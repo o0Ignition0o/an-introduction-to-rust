@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation" />
+    <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool." />
+    <title>An introduction to Rust</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body {
+            font-family: 'Droid Serif';
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .remark-slide-content h1 {
+            font-size: 3em;
+        }
+
+        .remark-slide-content h2 {
+            font-size: 2em;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.6em;
+        }
+
+        .footnote {
+            position: absolute;
+            bottom: 3em;
+        }
+
+        li p {
+            line-height: 1.25em;
+        }
+
+        .red {
+            color: #fa0000;
+        }
+
+        .large {
+            font-size: 2em;
+        }
+
+        a,
+        a>code {
+            color: rgb(249, 38, 114);
+            text-decoration: none;
+        }
+
+        code {
+            background: #e7e8e2;
+            border-radius: 5px;
+        }
+
+        .remark-code,
+        .remark-inline-code {
+            font-family: 'Ubuntu Mono';
+        }
+
+        .remark-code-line-highlighted {
+            background-color: #373832;
+        }
+
+        .pull-left {
+            float: left;
+            width: 47%;
+        }
+
+        .pull-right {
+            float: right;
+            width: 47%;
+        }
+
+        .pull-right~p {
+            clear: both;
+        }
+
+        #slideshow .slide .content code {
+            font-size: 0.8em;
+        }
+
+        #slideshow .slide .content pre code {
+            font-size: 0.9em;
+            padding: 15px;
+        }
+
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+
+        .inverse h1,
+        .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+
+        /* Slide-specific styling */
+
+        #slide-inverse .footnote {
+            bottom: 12px;
+            left: 20px;
+        }
+
+        #slide-how .slides {
+            font-size: 0.9em;
+            position: absolute;
+            top: 151px;
+            right: 140px;
+        }
+
+        #slide-how .slides h3 {
+            margin-top: 0.2em;
+        }
+
+        #slide-how .slides .first,
+        #slide-how .slides .second {
+            padding: 1px 20px;
+            height: 90px;
+            width: 120px;
+            -moz-box-shadow: 0 0 10px #777;
+            -webkit-box-shadow: 0 0 10px #777;
+            box-shadow: 0 0 10px #777;
+        }
+
+        #slide-how .slides .first {
+            background: #fff;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            z-index: 1;
+        }
+
+        #slide-how .slides .second {
+            position: relative;
+            background: #fff;
+            z-index: 0;
+        }
+
+        /* Two-column layout */
+
+        .left-column {
+            color: #777;
+            width: 20%;
+            height: 92%;
+            float: left;
+        }
+
+        .left-column h2:last-of-type,
+        .left-column h3:last-child {
+            color: #000;
+        }
+
+        .right-column {
+            width: 75%;
+            float: right;
+            padding-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Rust
+An introduction to Rust
+
+https://github.com/o0Ignition0o/an-introduction-to-rust
+
+
+.footnote[Jeremy Lempereur  - [blog](https://blog.jeremylempereur.com)]
+---
+
+  #### What is Rust?   
+  #### How does Rust achieve this ?
+  #### How old is it?
+  #### Where can we find some rust code?
+  #### Which toolset does rust provide?
+  #### Procedural programming
+  #### OOP
+  #### Functional programming
+  #### Take care of exceptions
+  #### Tests !
+  #### Where can I start learning ?
+
+---
+# What is Rust?
+
+Memory safety without garbage collection
+
+Abstraction without overhead
+
+Concurrency without data races
+
+Stability without stagnation
+
+## No compromise !
+
+---
+# How des Rust achieve this ?
+
+Borrow checking
+
+Immutability by default
+
+Lifetimes
+
+## 0 => N references, or 0 => 1 mutable reference only !
+
+---
+# How old is it ?
+.left[
+Personal project started in 2006 by Mozilla employee Graydon Hoare
+
+Mozilla began sponsoring the project in 2009
+
+Rust 1.0, the first stable release, was released on May 15, 2015.
+
+Since 2016 it is the most loved language from StackOverflow surveys
+]
+---
+## Where can I find some rust code ?
+
+Firefox
+
+Chef
+
+Dropbox
+
+npm
+
+games
+
+embedded devices
+
+your IDE (vscode ripgrep)
+
+and much more...
+
+## Are we *anything* yet ?
+
+http://www.arewewebyet.org/
+
+https://areweideyet.com/
+
+http://arewegameyet.com etc.
+---
+# Which tooling does Rust provide ?
+.left[
+A package manager, Cargo, so you can install build and run any "crate" for your project, The crate repository can be found on https://crates.io
+
+An indent / code format manager (rustfmt)
+
+An awesome compiler, plus a static analysis tool (clippy) which are really helpful... and sometimes less.
+]
+---
+# With Rust you can
+---
+layout: false
+
+# Do some Procedural programming
+
+<img class="center" src="img/procedural_programming.jpg" style="width: 30%; margin:0 auto;"/>
+
+```rust
+fn sum(x: u32, y: u32) -> u32 {
+    x + y
+}
+
+fn print_result(x: u32, y: u32, sum: u32) -> {
+    println!("{} plus {} is {}", x, y, sum);
+}
+```
+---
+layout: false
+# Allocate Everywhere
+<img class="center" src="img/allocate_everywhere.jpg" style="width: 40%; margin:0 auto;"/>
+
+```rust
+let foo = 1234; // ok this goes to the stack.
+let bar = vec![1,2,3,4]; // Vectors go to the heap
+let baz = Box::new(1234); 
+// Put the type to the heap, and toss me a reference to it !
+```
+---
+layout: false
+
+## Do some Object Oriented programming (sort of) <img src="img/structured_programming.jpg" style="width: 20%;margin-left: 10 px; vertical-align: middle;"/>
+
+
+```rust
+trait MakesNoise {
+    fn make_noise(self) -> ();
+}
+
+struct Dog;
+struct Cat;
+
+impl MakesNoise for Dog {
+    fn make_noise(self) -> () {
+        println!("WOOF WOOF");
+        // Who let the dogs out ?
+    }
+}
+
+impl MakesNoise for Cat {
+    fn make_noise(self) -> () {
+        println!("Everybody wants to be a cat !");
+        // Because the cat's the only cat, who knows where it's at
+    }
+}
+```
+---
+layout: false
+
+## Do some Functionnal programming <img src="img/functionnal_programming.png" style="width: 20%; margin:0 auto; float: right;"/>
+```rust
+
+fn lowest_above_zero(temperatures: Vec<i32>) -> i32 {
+    temperatures.iter().cloned().filter(|t| t > &0).fold(
+        i32::max_value(),
+        |lowest_temperature, current| {
+            if current < lowest_temperature {
+                current
+            } else {
+                lowest_temperature
+            }
+        },
+    )
+}
+
+fn main() {
+    let temperatures = vec![-12, -8, -1, 2, 3, 12];
+    println!(
+        "The lowest temperature above zero is {}",
+        lowest_above_zero(temperatures)
+        // The lowest temperature above zero is 2
+    );
+}
+
+```
+---
+layout: false
+
+## Create some nice enums and do some pattern matching
+```rust
+
+enum ThingInTheSky {
+    Bird(i32),
+    Plane(bool),
+    Superman,
+    SomethingElse,
+}
+
+fn what_is_it(thing: ThingInTheSky) -> () {
+    match thing {
+        ThingInTheSky::Bird(number_of_wings) => {
+            println!("Is that a bird ? it has {} wings!", number_of_wings)
+        }
+        ThingInTheSky::Plane(is_big) => println!(
+            "Is that a huge plane ? {}", is_big
+            ),
+        ThingInTheSky::Superman => println!("No, it's superman ! ! !"),
+    }
+}
+
+```
+---
+layout: false
+## It allows us to make sure we take care of exceptions / optional stuff : 
+```rust
+fn try_to_get_an_integer() -> Result<i32, Err<String>> {
+    Ok(1)
+    // Err(String::from("Something went wrong !")) 
+}
+
+fn maybe_an_integer() -> Option<i32> {
+    Some(1)
+    // None    
+}
+
+fn main() -> () {
+    match try_to_get_an_integer() {
+        Ok(my_awesome_value) => //Do something with it,
+        Err(error_message) => println!(error_message)
+    }
+}
+```
+---
+layout: false
+## Let's not forget about tests
+
+<img src="img/tests.gif" style="width: 100%; margin:0 auto;"/>
+---
+layout: false
+## Pretty simple, right ? 
+```rust
+fn sum(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[test]
+fn two_plus_three_is_five {
+    // Setup
+    let expected_result = 5;
+    let a = 2;
+    let b = 3;
+
+    assert_eq!(expected_result, sum(a,b));
+}
+```
+---
+layout: false
+## Icing on the cake : Documentation is also a test !
+```rust
+/// 
+///extern crate testing;
+/// use testing::sum;
+///
+/// # fn main() {
+/// // Create two integers
+/// let two = 2;
+/// let four = 4;
+/// let sum = sum(two, four);
+/// assert_eq!(6, sum);
+/// # }
+/// 
+fn sum(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[test]
+fn two_plus_three_is_five {
+    // Setup
+    let expected_result = 5;
+    let a = 2;
+    let b = 3;
+
+    assert_eq!(expected_result, sum(a,b));
+}
+```
+---
+template: inverse
+
+# Where can I start learning ?
+Read the rustlang book ! (https://doc.rust-lang.org/stable/book/second-edition/index.html)
+.left[
+Consider having a look at : 
+- Rust on Embedded systems (https://japaric.github.io/discovery/README.html)
+- Rust for the web (hyper, gotham, and actix provide great quickstarts)
+- Building a toy web browser (https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html)
+- Building a toy operating system ! (https://intermezzos.github.io/book/second-edition/)
+]
+## Start hacking, if it compiles, then it works !
+---
+name: last-page
+template: inverse
+
+## Any questions ? 
+
+<img class="center" src="img/thank_you.jpg" style="width: 50%; margin:0 auto;"/>
+
+https://github.com/o0Ignition0o/an-introduction-to-rust
+
+
+Send me a DM on [twitter](https://twitter.com/o0ignition0o), an [email](jeremy.lempereur@gmail.com), or a private message on [LinkedIn](https://www.linkedin.com/in/jeremy-lempereur-9564b78a/) !
+    </textarea>
+    <script src="js/remark-latest.min.js"></script>
+    <script>
+        var hljs = remark.highlighter.engine;
+    </script>
+    <script src="js/remark.language.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'monokai',
+            highlightLanguage: 'remark',
+            highlightLines: true
+        });
+    </script>
+</body>
+
+</html>
